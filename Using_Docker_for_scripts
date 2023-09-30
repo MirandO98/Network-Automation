@@ -1,0 +1,15 @@
+# Use an official Python runtime as a parent image
+FROM python:3.9
+
+# Set the working directory in the container
+WORKDIR /app
+
+# Copy the Python scripts into the container
+COPY ospf_python.py /app/
+COPY ping_internet.python.py /app/
+
+# Install any required Python dependencies
+RUN pip install paramiko  # Install the Paramiko library
+
+# Define the command to run your Python script (change as needed)
+CMD ["python", "ospf_python.py"]

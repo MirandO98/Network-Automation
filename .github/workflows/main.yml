@@ -18,7 +18,7 @@ jobs:
         git config --global user.name "Mirand Osmani"
         git config --global user.email "osmanimirand@gmail.com"
         git config --global credential.helper store
-        echo "https://github.com/$GITHUB_ACTOR:$GITHUB_TOKEN@github.com" > ~/.git-credentials
+        echo "https://github.com:$GITHUB_TOKEN@github.com" > ~/.git-credentials
 
     - name: Mirror to Client's Repository
       env:

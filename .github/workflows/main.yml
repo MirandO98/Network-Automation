@@ -18,4 +18,4 @@ jobs:
           git remote add mirror_test https://github.com/MirandO98/mirror_test.git
           git push mirror_test master
         env:
-          CLIENT_TOKEN: ${{ secrets.CLIENT_TOKEN }
+          CLIENT_TOKEN: ${{ secrets.CLIENT_TOKEN }}

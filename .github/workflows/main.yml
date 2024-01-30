@@ -3,7 +3,7 @@ name: Mirror to Client Repo
 on:
   push:
     branches:
-      - production
+      - master
 
 jobs:
   mirror:

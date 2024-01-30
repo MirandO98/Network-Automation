@@ -27,7 +27,7 @@ jobs:
       run: |
         git clone https://github.com/$SOURCE_REPO source_repo
         cd source_repo
-        git remote add client_repo https://github.com/$TARGET_REPO.git
+        git remote add client_repo https://github.com/$TARGET_REPO
         git push --mirror client_repo
 
     - name: Clean up

@@ -13,14 +13,18 @@ jobs:
     - name: Check out code
       uses: actions/checkout@v2
 
+    - name: Set up Git credentials
+      run: |
+        git config --global user.name "Mirand Osmani"
+        git config --global user.email "osmanimirand@gmail.com"
+        git config --global credential.helper store
+        echo "https://github.com:$GITHUB_TOKEN@github.com" > ~/.git-credentials
+
     - name: Mirror to Client's Repository
       env:
         SOURCE_REPO: MirandO98/Network-Automation
         TARGET_REPO: krenar-telos/test_mirroring
       run: |
-        git config --global user.name "Mirand Osmani"
-        git config --global user.email "osmanimirand@gmail.com"
-        
         git clone https://github.com/$SOURCE_REPO source_repo
         cd source_repo
         git remote add client_repo https://github.com/$TARGET_REPO.git
@@ -29,4 +33,4 @@ jobs:
     - name: Clean up
       run: |
         cd ..
-        rm -rf source_repo  #removing
+        rm -rf source_repo

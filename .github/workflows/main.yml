@@ -3,7 +3,7 @@ name: Mirror Production Branch to Client
 on:
   push:
     branches:
-      - production
+      - main
 
 jobs:
   mirror:

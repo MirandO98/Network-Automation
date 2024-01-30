@@ -18,7 +18,7 @@ jobs:
         git config --global user.name "Mirand Osmani"
         git config --global user.email "osmanimirand@gmail.com"
         git config --global credential.helper store
-        echo "https://github.com:$GITHUB_TOKEN@github.com" > ~/.git-credentials
+        echo "https://github.com/$GITHUB_ACTOR:$GITHUB_TOKEN@github.com" > ~/.git-credentials
 
     - name: Mirror to Client's Repository
       env:
@@ -27,7 +27,7 @@ jobs:
       run: |
         git clone https://github.com/$SOURCE_REPO source_repo
         cd source_repo
-        git remote add client_repo https://github.com/$TARGET_REPO
+        git remote add client_repo https://github.com/$TARGET_REPO.git
         git push --mirror client_repo
 
     - name: Clean up

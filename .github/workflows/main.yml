@@ -1,0 +1,21 @@
+name: Mirror to Client Repo
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  mirror:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Mirror changes to client's repo
+        run: |
+          git remote add mirror_test https://github.com/MirandO98/mirror_test.git
+          git push mirror_test production
+        env:
+          CLIENT_TOKEN: ${{ secrets.CLIENT_TOKEN }

@@ -29,4 +29,4 @@ jobs:
     - name: Clean up
       run: |
         cd ..
-        rm -rf source_repo
+        rm -rf source_repo  #removing

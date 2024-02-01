@@ -15,7 +15,7 @@ jobs:
       - name: Checkout fenworks repository
         uses: actions/checkout@v2
         with:
-          repository: https://github.com/MirandO98/Network-Automation.git
+          repository: MirandO98/Network-Automation.git
           ref: ${{ github.ref }}
       
       - name: Configure Git
@@ -27,3 +27,9 @@ jobs:
         run: |
           git remote add mirror_test https://github.com/MirandO98/mirror_test.git
           git push --mirror mirror_test
+
+          
+          
+          
+          # HEAD:master - use this when you want to push to the specific branches
+          

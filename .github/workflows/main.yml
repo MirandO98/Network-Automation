@@ -3,7 +3,7 @@ name: Mirror Changes
 on:
   push:
     branches:
-      - main  # Adjust branch as needed
+      - master  # Adjust branch as needed
 
 jobs:
   mirror_changes:
@@ -26,4 +26,4 @@ jobs:
           GIT_TOKEN: ${{ secrets.PAT_TOKEN }}  # Use PAT stored in repository secrets
         run: |
           git remote add mirror_test https://github.com/MirandO98/mirror_test.git
-          git push -u mirror_test HEAD:main  #decide which one
+          git push -u mirror_test HEAD:main  # Push to target branch as desired

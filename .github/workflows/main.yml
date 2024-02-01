@@ -3,7 +3,7 @@ name: Mirror Changes
 on:
   push:
     branches:
-      - master  
+      - master
 
 jobs:
   mirror_changes:
@@ -14,19 +14,22 @@ jobs:
         uses: actions/checkout@v2
         with:
           ref: ${{ github.ref }}
-          fetch-depth: 0  
+          fetch-depth: 0
+
+      - name: Print working directory
+        run: pwd
 
       - name: Configure Git
         run: |
           git config --global user.name "Mirand Osmani"
           git config --global user.email "osmanimirand@gmail.com"
+          git config --global credential.helper store  # Potentially needed for PAT
 
       - name: Mirror changes to mirror_test repository
         env:
-          GIT_TOKEN: ${{ secrets.PAT_TOKEN }} 
+          GIT_TOKEN: ${{ secrets.PAT_TOKEN }}
         run: |
           git clone --bare https://github.com/MirandO98/Network-Automation.git
           cd bare-clone
           git push --mirror https://github.com/MirandO98/mirror_test.git
           rm -rf bare-clone
-

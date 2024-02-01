@@ -3,7 +3,7 @@ name: Mirror Changes
 on:
   push:
     branches:
-      - main  
+      - master  
 
 jobs:
   mirror_changes:

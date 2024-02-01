@@ -3,33 +3,27 @@ name: Mirror Changes
 on:
   push:
     branches:
-      - master
-      
-  
+      - main  # Adjust branch as needed
 
 jobs:
   mirror_changes:
     runs-on: ubuntu-latest
-    
+
     steps:
-      - name: Checkout fenworks repository
+      - name: Checkout Network-Automation repository
         uses: actions/checkout@v2
         with:
-          repository: MirandO98/Network-Automation.git
           ref: ${{ github.ref }}
-      
+          fetch-depth: 0  # Ensure full branch history
+
       - name: Configure Git
         run: |
           git config --global user.name "Mirand Osmani"
           git config --global user.email "osmanimirand@gmail.com"
-      
-      - name: Mirror changes to fenworksapp repository 
+
+      - name: Mirror changes to mirror_test repository
+        env:
+          GIT_TOKEN: ${{ secrets.PAT_TOKEN }}  # Use PAT stored in repository secrets
         run: |
           git remote add mirror_test https://github.com/MirandO98/mirror_test.git
-          git push --mirror mirror_test
-
-          
-          
-          
-          # HEAD:master - use this when you want to push to the specific branches
-          
+          git push -u mirror_test HEAD:main

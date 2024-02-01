@@ -25,5 +25,8 @@ jobs:
         env:
           GIT_TOKEN: ${{ secrets.PAT_TOKEN }} 
         run: |
-          git remote add mirror_test https://github.com/MirandO98/mirror_test.git
-          git push -u mirror_test HEAD:main  # Push to target branch
+          git clone --bare https://github.com/MirandO98/mirror_test.git
+          cd bare-clone
+          git push --mirror https://github.com/MirandO98/mirror_test.git
+          rm -rf bare-clone
+

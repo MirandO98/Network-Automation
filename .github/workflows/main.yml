@@ -1,29 +1,23 @@
-name: Mirror Changes
+name: <action-name>
 
 on:
   push:
     branches:
-      - master  # Adjust branch as needed
+      - master
+  
 
 jobs:
-  mirror_changes:
+  sync:
     runs-on: ubuntu-latest
-
+    name: Repo Mirror Sync
     steps:
-      - name: Checkout Network-Automation repository
-        uses: actions/checkout@v2
-        with:
-          ref: ${{ github.ref }}
-          fetch-depth: 0  # Ensure full branch history
-
-      - name: Configure Git
-        run: |
-          git config --global user.name "Mirand Osmani"
-          git config --global user.email "osmanimirand@gmail.com"
-
-      - name: Mirror changes to mirror_test repository
-        env:
-          GIT_TOKEN: ${{ secrets.PAT_TOKEN }}  # Use PAT stored in repository secrets
-        run: |
-          git remote add mirror_test https://github.com/MirandO98/mirror_test.git
-          git push -u mirror_test HEAD:main  # Push to target branch as desired
+    - uses: actions/checkout@v3
+    - name: Repo Mirror Sync
+      uses: kubeservice-stack/repos-mirror-action@<latest version>
+      with:
+        # Such as https://github.com/dongjiang1989/mirror-action.git
+        target-url: https://github.com/MirandO98/mirror_test.git
+        # Such as dongjiang1989
+        target-username: MirandO98
+        # You can store token in your project's 'Setting > Secrets' and reference the name here. Such as ${{ secrets.ACCESS_TOKEN }}
+        target-token: ${{ secrets.PAT_TOKEN }}

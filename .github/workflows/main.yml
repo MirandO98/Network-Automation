@@ -30,6 +30,6 @@ jobs:
           GIT_TOKEN: ${{ secrets.PAT_TOKEN }}
         run: |
           git clone --bare https://github.com/MirandO98/Network-Automation.git
-          cd bare-clone
+          
           git push --mirror https://github.com/MirandO98/mirror_test.git
           rm -rf bare-clone

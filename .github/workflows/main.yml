@@ -5,8 +5,6 @@ on:
     branches:
       - master
       
-  
-
 jobs:
   mirror_changes:
     runs-on: ubuntu-latest
@@ -15,8 +13,8 @@ jobs:
       - name: Checkout fenworks repository
         uses: actions/checkout@v2
         with:
-          #repository: https://github.com/MirandO98/Network-Automation.git
-          #ref: ${{ github.ref }}
+          repository: MirandO98/Network-Automation
+          ref: ${{ github.ref }}
       
       - name: Configure Git
         run: |
@@ -26,6 +24,4 @@ jobs:
       - name: Mirror changes to fenworksapp repository 
         run: |
           git remote add mirror_test https://github.com/MirandO98/mirror_test.git
-          git remote add mirror_test
           git push mirror_test HEAD:master
-          

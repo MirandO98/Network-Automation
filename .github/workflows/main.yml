@@ -1,35 +1,27 @@
-name: Mirror Changes
+name: Mirror to fenworksapp
 
 on:
   push:
     branches:
-      - master
+        - master
 
 jobs:
-  mirror_changes:
+  mirror:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout Network-Automation repository
+      - uses: actions/checkout@v3
+
+      - name: Fetch NA repository
         uses: actions/checkout@v2
         with:
-          ref: ${{ github.ref }}
-          fetch-depth: 0
+          repository: https://github.com/MirandO98/mirror_test.gitt
+          ref: 'main'
+          path: 'mirror_test'
 
-      - name: Print working directory
-        run: pwd
-
-      - name: Configure Git
+      - name: Mirror changes to fenworksapp
         run: |
-          git config --global user.name "Mirand Osmani"
-          git config --global user.email "osmanimirand@gmail.com"
-          git config --global credential.helper store  # Potentially needed for PAT
+          git remote add mirror_test https://github.com/MirandO98/mirror_test.git
+          git push -f mirror_test ${GITHUB_REF}
 
-      - name: Mirror changes to mirror_test repository
-        env:
-          GIT_TOKEN: ${{ secrets.PAT_TOKEN }}
-        run: |
-          git clone --bare https://github.com/MirandO98/Network-Automation.git
-          
-          git push --mirror https://github.com/MirandO98/mirror_test.git
-          rm -rf bare-clone
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

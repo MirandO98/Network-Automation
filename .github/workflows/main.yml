@@ -14,11 +14,11 @@ jobs:
       - name: Fetch NA repository
         uses: actions/checkout@v2
         with:
-          repository: https://github.com/MirandO98/mirror_test.gitt
+          repository: MirandO98/mirror_test.gitt
           ref: 'main'
           path: 'mirror_test'
 
-      - name: Mirror changes to fenworksapp
+      - name: Mirror changes to mirror_test
         run: |
           git remote add mirror_test https://github.com/MirandO98/mirror_test.git
           git push -f mirror_test ${GITHUB_REF}

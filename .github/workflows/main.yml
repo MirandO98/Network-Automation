@@ -15,8 +15,8 @@ jobs:
       - name: Checkout fenworks repository
         uses: actions/checkout@v2
         with:
-          repository: https://github.com/MirandO98/Network-Automation.git
-          ref: ${{ github.ref }}
+          #repository: https://github.com/MirandO98/Network-Automation.git
+          #ref: ${{ github.ref }}
       
       - name: Configure Git
         run: |
